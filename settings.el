@@ -92,6 +92,7 @@
   :straight t
   :init
   )
+(origami-mode)
 (key-chord-define-global "ft" 'origami-recursively-toggle-node)
 (key-chord-define-global "fn" 'origami-show-only-node)
 
@@ -203,25 +204,42 @@
 ;;  undo-tree, iedit, dtrt-indent, clean-aindent-mode anzu
 ;; 
 
+(use-package tab-group
+  :straight t
+  :init)
+
+(use-package tabbar
+  :straight t
+  :init)
+
+(use-package tabbar-ruler
+  :straight t
+  :init)
 
 
-
-;;(tabbar-mode t)
+(tabbar-mode t)
 
 ;;(global-linum-mode t)
 
 
 ;; something about eww not able to access port 433
-;;(require 'tls)
-;;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(use-package tls
+  :straight t
+  :init)
+
+(require 'tls)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;;use mobile version of websites
-;;(setq url-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
+(setq url-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
 
 
 
 
 
-(key-chord-define-global "v2" 'avy-goto-char-2)
-(key-chord-define-global "vl" 'avy-goto-line)
-(key-chord-define-global "vw" 'avy-goto-word-1)
+(key-chord-define-global "yc" 'avy-goto-char-2)
+(key-chord-define-global "yl" 'avy-goto-line)
+(key-chord-define-global "yw" 'avy-goto-word-1)
 ;; TBD org-mode binding
+(global-set-key [f1] 'green-ansi-term)
+
+(key-chord-define-global "pw" 'previous-multiframe-window)

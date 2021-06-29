@@ -23,7 +23,7 @@ call function ansi-term interactively."
         (switch-to-buffer-other-frame existing-buffer)
       (call-interactively 'ansi-term))))
 
-(global-set-key [f1] 'green-ansi-term)
+(global-set-key [f3] 'green-ansi-term)
 
 (defun green-eww ()
   "Show an existing buffer called \"*eww*\" if one exists, otherwise
@@ -90,3 +90,11 @@ Version 2017-09-01"
 
 ;;https://emacs.stackexchange.com/questions/37354/a-single-key-binding-for-several-commands
 
+;;http://ergoemacs.org/emacs/elisp_examples.html
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (let ((pos (line-beginning-position)))
+    (end-of-line)
+    (set-mark pos)))
+;; http://ergoemacs.org/emacs/elisp_basics.html

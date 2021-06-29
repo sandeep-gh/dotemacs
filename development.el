@@ -14,8 +14,16 @@
   :straight t
   :init
   )
+;;https://askubuntu.com/questions/839852/emacs-c-ide-gnu-global-helm-gtags
+;; ggtags-create-tags -- python hook
+;; https://github.com/leoliu/ggtags#install-global-and-plugins
+;;https://blade6570.github.io/soumyatripathy/blog_gnuglobal/gnu_global.html
+;;https://www.zhstar.win/2018/12/03/emacs-cpp-ide/
+;; https://mostlymaths.net/2019/05/gtags-gnu-global-in-emacs-for-scala.html/
+;; https://sriramkswamy.github.io/dotemacs/
 
 (add-hook 'python-mode-hook 'gtags-mode)
+
 (dolist (map (list ggtags-mode-map))
   (define-key map (kbd "C-c g s") 'ggtags-find-other-symbol)
   (define-key map (kbd "C-c g h") 'ggtags-view-tag-history)
@@ -95,6 +103,36 @@
 ;;;;;;;;;;;;;;;;
 ;; python ide ;;
 ;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;; stuck on xref ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;https://launchpad.net/global-tags.el
+;; (setenv "GTAGSLIBPATH" "G:/msys64/mingw64/include/")
+;; (load-file "g:/msys64/home/o/.emacs.d/global-tags.el/global-tags.el")
+;; (add-hook 'c-mode-hook #'global-tags-exclusive-backend-mode)
+;; (add-hook 'c-mode-hook
+;;       (lambda ()
+;;         (add-hook 'after-save-hook
+;;               #'global-tags-update-database-with-buffer
+;;               nil
+;;               t)))
+
+
+;; TBD
+;; (use-package ivy-xref
+;;   :ensure t
+;;   :init
+;;   ;; xref initialization is different in Emacs 27 - there are two different
+;;   ;; variables which can be set rather than just one
+;;   (when (>= emacs-major-version 27)
+;;     (setq xref-show-definitions-function #'ivy-xref-show-defs))
+;;   ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+;;   ;; commands other than xref-find-definitions (e.g. project-find-regexp)
+;;   ;; as well
+;;   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 
 (use-package company
   :straight t
