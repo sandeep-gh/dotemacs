@@ -213,11 +213,11 @@
 
 
 ;; something about eww not able to access port 433
-(use-package tls
+(use-package gnutls
   :straight t
   :init)
 
-(require 'tls)
+(require 'gnutls)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;;use mobile version of websites
 (setq url-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
