@@ -5,15 +5,41 @@
 ;; https://docs.projectile.mx/projectile/usage.html
 ;;https://www.reddit.com/r/emacs/comments/ijmgtx/tip_how_to_use_a_stable_and_fast_environment_to/
 
+
 (use-package line-comment-banner
   :straight t
   :init
   )
 (global-set-key (kbd "C-;") 'line-comment-banner)
+
+(defun endbanner()
+(interactive)
+(insert "#‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗ end ‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗")
+
+)
+
+;;https://blade6570.github.io/soumyatripathy/blog_gnuglobal/gnu_global.html
+(use-package gtags
+  :straight t
+  :init
+  )
+
 (use-package ggtags
   :straight t
   :init
   )
+
+
+
+(use-package origami
+  :straight t
+  :init
+  )
+(global-origami-mode t)
+(key-chord-define-global "ft" 'origami-recursively-toggle-node)
+(key-chord-define-global "fn" 'origami-show-only-node)
+
+
 ;;https://askubuntu.com/questions/839852/emacs-c-ide-gnu-global-helm-gtags
 ;; ggtags-create-tags -- python hook
 ;; https://github.com/leoliu/ggtags#install-global-and-plugins
@@ -260,9 +286,6 @@
 
 ;; use ipython3
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-(setq python-shell-interpreter "ipython3"
+(setq python-shell-interpreter "/home/kabira/Builds/python3.10/bin/ipython3"
       python-shell-interpreter-args "-i")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;; end python settings ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -12,7 +12,7 @@
 
 (google-this-mode 1)
 
-(key-chord-define-global "qg" 'eww-new)
+(key-chord-define-global "qg" 'google-this-search)
 
 
 (defun eww-new ()
@@ -22,6 +22,8 @@
     (eww-mode)
     (eww url)))
 (key-chord-define-global "wn" 'eww-new)
+
+;; gold mine: https://protesilaos.com/dotemacs/
 
 
 ;; navigating links in eww

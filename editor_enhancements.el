@@ -29,12 +29,25 @@ call function ansi-term interactively."
   "Show an existing buffer called \"*eww*\" if one exists, otherwise
 call function eww interactively."
   (interactive)
-  (let ((existing-buffer (get-buffer "*eww*")))
+  (let ((existing-buffer (get-buffer "eww<2>")))
     (if existing-buffer
         (switch-to-buffer-other-frame existing-buffer)
       (call-interactively 'eww))))
 
-(global-set-key [f2] 'green-eww)
+(global-set-key [f4] 'green-eww)
+
+
+(defun green-python ()
+  "Show an existing buffer called \"*eww*\" if one exists, otherwise
+call function eww interactively."
+  (interactive)
+  (let ((existing-buffer (get-buffer "*Python*")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'elpy-shell-switch-to-shell))))
+
+(global-set-key [f5] 'green-python)
+
 
 
 (defun er-switch-to-previous-buffer ()
@@ -79,7 +92,7 @@ Version 2017-09-01"
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
 
-(key-chord-define-global "fp" #'xah-copy-file-path)
+(key-chord-define-global "xp" #'xah-copy-file-path)
 (key-chord-mode +1)
 (key-chord-define-global "gf" 'globalff)
 

@@ -2,6 +2,8 @@
 ;; universal packages and configurations ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq inhibit-startup-screen t)
+
 
 ;; for straight package
 (defvar bootstrap-version)
@@ -82,19 +84,6 @@
 ;; rainbow-delimiters-mode setup, with decreasing bracket size
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-(use-package key-chord
-  :straight t
-  :init
-  )
-(key-chord-mode t)
-
-(use-package origami
-  :straight t
-  :init
-  )
-(origami-mode)
-(key-chord-define-global "ft" 'origami-recursively-toggle-node)
-(key-chord-define-global "fn" 'origami-show-only-node)
 
 
 (use-package globalff
@@ -204,9 +193,10 @@
 ;;  undo-tree, iedit, dtrt-indent, clean-aindent-mode anzu
 ;; 
 
-(use-package tab-group
-  :straight t
-  :init)
+;;; Todo: seems useful but has annoying highlighting in top bar
+;; (use-package tab-group
+;;   :straight t
+;;   :init)
 
 (use-package tabbar
   :straight t
@@ -233,13 +223,23 @@
 (setq url-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
 
 
-
+(use-package key-chord
+  :straight t
+  :init
+  )
+(key-chord-mode t)
 
 
 (key-chord-define-global "yc" 'avy-goto-char-2)
 (key-chord-define-global "yl" 'avy-goto-line)
 (key-chord-define-global "yw" 'avy-goto-word-1)
 ;; TBD org-mode binding
-(global-set-key [f1] 'green-ansi-term)
+(global-set-key [f1] 'previous-multiframe-window)
+(global-set-key [f2] 'next-multiframe-window)
 
 (key-chord-define-global "pw" 'previous-multiframe-window)
+
+(use-package yaml-mode
+  :straight t
+  :init)
+
