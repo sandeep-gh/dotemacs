@@ -134,7 +134,7 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
+;; ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 (ido-vertical-mode 1)
@@ -198,16 +198,16 @@
 ;;   :straight t
 ;;   :init)
 
-(use-package tabbar
-  :straight t
-  :init)
+;; (use-package tabbar
+;;   :straight t
+;;   :init)
 
-(use-package tabbar-ruler
-  :straight t
-  :init)
+;; (use-package tabbar-ruler
+;;   :straight t
+;;   :init)
 
 
-(tabbar-mode t)
+;; (tabbar-mode t)
 
 ;;(global-linum-mode t)
 

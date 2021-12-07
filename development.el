@@ -6,38 +6,57 @@
 ;;https://www.reddit.com/r/emacs/comments/ijmgtx/tip_how_to_use_a_stable_and_fast_environment_to/
 
 
-(use-package line-comment-banner
+;; (use-package line-comment-banner
+;;   :straight t
+;;   :init
+;;   )
+
+
+;; (defun endbanner()
+;; (interactive)
+;; (insert "#‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗ end ‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗")
+
+;; )
+
+(use-package banner-comment
   :straight t
   :init
-  )
-(global-set-key (kbd "C-;") 'line-comment-banner)
-
-(defun endbanner()
-(interactive)
-(insert "#‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗ end ‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗")
-
-)
-
+  :commands (banner-comment)
+  :bind ("C-c h" . banner-comment))
+(global-set-key (kbd "C-;") 'banner-comment)
 ;;https://blade6570.github.io/soumyatripathy/blog_gnuglobal/gnu_global.html
 (use-package gtags
   :straight t
   :init
   )
 
+(use-package git-emacs
+  :straight t
+  :init 
+  )
+
 (use-package ggtags
   :straight t
-  :init
+  :init 
   )
 
-
-
-(use-package origami
-  :straight t
+(use-package importmagic
+  :straight   (:host github :repo "anachronic/importmagic.el")
   :init
+  :config
+  (add-hook 'python-mode-hook 'importmagic-mode)
   )
-(global-origami-mode t)
-(key-chord-define-global "ft" 'origami-recursively-toggle-node)
-(key-chord-define-global "fn" 'origami-show-only-node)
+(add-hook 'python-mode-hook 'importmagic-mode)
+
+;======================== garbles up the code ========================
+;; (use-package origami
+;;   :straight t
+;;   :init
+;;   )
+;; (global-origami-mode t)
+;; (key-chord-define-global "ft" 'origami-recursively-toggle-node)
+;; (key-chord-define-global "fn" 'origami-show-only-node)
+
 
 
 ;;https://askubuntu.com/questions/839852/emacs-c-ide-gnu-global-helm-gtags
@@ -106,7 +125,7 @@
 ;;   ^Projectile^        ^Buffers^           ^Find^              ^Search^
 ;;   ^──────────^────────^───────^───────────^────^──────────────^──────^────────────
 ;;   _q_ quit            _b_ list            _d_ directory       _r_ replace
-;;   _i_ reset cache     _k_ kill all        _D_ root            _R_ regexp replace
+;;   _i_ reset cache     _k_ kill all        _D_ root      p      _R_ regexp replace
 ;;   ^^                  _S_ save all        _f_ file            _s_ search
 ;;   ^^                  ^^                  _p_ project         ^^
 ;;   ^^                  ^^                  ^^                  ^^
@@ -286,6 +305,6 @@
 
 ;; use ipython3
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-(setq python-shell-interpreter "/home/kabira/Builds/python3.10/bin/ipython3"
+(setq python-shell-interpreter "/home/shared/Builds/Python-3.10.0/bin/ipython3"
       python-shell-interpreter-args "-i")
 

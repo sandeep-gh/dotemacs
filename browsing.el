@@ -1,3 +1,4 @@
+(setq browse-url-browser-function 'eww-browse-url)
 (use-package sx
   :straight t
   :init
@@ -58,6 +59,7 @@
 
 (require 'ol-eww)
 (key-chord-define-global "eo" 'org-eww-copy-for-org-mode)
+(defvar-local endless/display-images t)
 
 (defun endless/toggle-image-display ()
   "Toggle images display on current buffer."
