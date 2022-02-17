@@ -25,11 +25,25 @@ call function ansi-term interactively."
 
 (global-set-key [f3] 'green-ansi-term)
 
+
+;; shell 2 is for remote machine
+(defun green-ansi-term2 ()
+  "Show an existing buffer called \"*ansi-term*\" if one exists, otherwise
+call function ansi-term interactively."
+  (interactive)
+  (let ((existing-buffer (get-buffer "*ansi-term*<2>")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'ansi-term))))
+
+(global-set-key [f6] 'green-ansi-term2)
+
+
 (defun green-eww ()
   "Show an existing buffer called \"*eww*\" if one exists, otherwise
 call function eww interactively."
   (interactive)
-  (let ((existing-buffer (get-buffer "eww<2>")))
+  (let ((existing-buffer (get-buffer "*eww*")))
     (if existing-buffer
         (switch-to-buffer-other-frame existing-buffer)
       (call-interactively 'eww))))

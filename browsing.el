@@ -4,7 +4,7 @@
   :init
   )
 
-(key-chord-define-global "qs" 'my-get-stackoverflow-answers)
+;;(key-chord-define-global "qs" 'my-get-stackoverflow-answers)
 
 (use-package google-this
   :straight t
@@ -23,6 +23,9 @@
     (eww-mode)
     (eww url)))
 (key-chord-define-global "wn" 'eww-new)
+
+(key-chord-define-global "wy" 'eww-copy-page-url)
+
 
 ;; gold mine: https://protesilaos.com/dotemacs/
 
@@ -59,6 +62,7 @@
 
 (require 'ol-eww)
 (key-chord-define-global "eo" 'org-eww-copy-for-org-mode)
+
 (defvar-local endless/display-images t)
 
 (defun endless/toggle-image-display ()

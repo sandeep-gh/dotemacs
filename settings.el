@@ -69,7 +69,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Bitstream Vera Sans Mono" :foundry "Bits" :slant normal :weight normal :height 128 :width normal))))
+ '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight semi-bold :height 113 :width normal))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red" :height 2.0))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "orange" :height 1.8))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow" :height 1.6))))
