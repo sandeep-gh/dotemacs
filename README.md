@@ -1,6 +1,6 @@
 # Setup/Installation
 ## install python dependencies
-pip install pyflakes mypy black importmagic yapf epc  autopep8 flake8 jedi virtualenv
+pip install pyflakes3 mypy black importmagic yapf epc  autopep8 flake8 jedi virtualenv
 source /home/kabira/.emacs.d/elpy/rpc-venv
 
 ## Clone dotemacs in ~/DesktopSetting folder
@@ -9,6 +9,16 @@ cd
 mkdir DesktopSetting
 cd DesktopSetting
 git clone https://github.com/sandeep-gh/dotemacs.git
+```
+
+## Manual modification
+- M-x pyvenv-activate
+choose ~/.emacs.d/elpy/rpc-venv 
+
+- M-x elpy-config
+choose install ipython in virtualenv
+
+- M-x jedi:install-server
 
 ## Add below lines in ~/.emacs.d/init.el
 

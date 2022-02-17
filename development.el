@@ -247,7 +247,7 @@
     (elpy-enable)
     :config
     (add-hook 'elpy-mode-hook 'poetry-tracking-mode) ;; optional if you're using Poetry
-    (setq elpy-syntax-check-command "~/.pyenv/shims/pyflakes") ;; or replace with the path to your pyflakes binary
+    (setq elpy-syntax-check-command "/usr/bin/pyflakes3") ;; or replace with the path to your pyflakes binary
     ;; use flycheck instead of flymake
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
