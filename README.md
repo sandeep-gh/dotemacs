@@ -1,7 +1,13 @@
 # Setup/Installation
-## install python dependencies
-pip install pyflakes3 mypy black importmagic yapf epc  autopep8 flake8 jedi virtualenv
-source /home/kabira/.emacs.d/elpy/rpc-venv
+## Compiling python
+- install dependencies
+sudo aptitude install libsqlite3-dev libffi-dev
+- download python source and extract the files
+- configure and compile
+- make install
+
+## install cascadia-code font
+sudo aptitude install fonts-cascadia-code
 
 ## Clone dotemacs in ~/DesktopSetting folder
 ```
@@ -11,19 +17,39 @@ cd DesktopSetting
 git clone https://github.com/sandeep-gh/dotemacs.git
 ```
 
-## Manual modification
+## Manual modifications
+- If using compiled python binary then edit development.el and
+change
+`
+(setq elpy-rpc-python-command "/opt/bin/python3")
+`
+to point to correct python3 executable. 
+Or else, comment out the line
+
+-  Add below lines in ~/.emacs.d/init.el
+
+(add-to-list 'load-path "~/.emacs.d/custom")
+(load "~/DesktopSetting/dotemacs/init.el")
+
+
+- install python dependencies
+```
+source ~/.emacs.d/elpy/rpc-venv/bin/activate
+pip install pyflakes mypy black importmagic yapf epc  autopep8 flake8 jedi virtualenv ipython
+```
+
 - M-x pyvenv-activate
 choose ~/.emacs.d/elpy/rpc-venv 
 
 - M-x elpy-config
-choose install ipython in virtualenv
+to make sure all configs are in place
 
 - M-x jedi:install-server
 
-## Add below lines in ~/.emacs.d/init.el
 
-(add-to-list 'load-path "~/.emacs.d/custom")
-(load "~/DesktopSetting/dotemacs/init.el")
+
+
+
 
 # Features
 ## globalff
@@ -109,11 +135,10 @@ py-isort
 sx
 
 
-# dotemacs
-pip install epc virtualenv jedi autopep8 flake8 ipython importmagic yapf
 
-* On Debian/Ubuntu/etc
-sudo aptitude install fonts-cascadia-code
+
+
+
 
 
 - 

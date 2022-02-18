@@ -246,8 +246,8 @@
     :init
     (elpy-enable)
     :config
-    (add-hook 'elpy-mode-hook 'poetry-tracking-mode) ;; optional if you're using Poetry
-    (setq elpy-syntax-check-command "/usr/bin/pyflakes3") ;; or replace with the path to your pyflakes binary
+    ;;(add-hook 'elpy-mode-hook 'poetry-tracking-mode) ;; optional if you're using Poetry
+    (setq elpy-syntax-check-command "pyflakes") ;; or replace with the path to your pyflakes binary
     ;; use flycheck instead of flymake
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
@@ -333,9 +333,11 @@
 (setq elpy-rpc-backend "jedi") ;;elpy-jedi integration not working
 
 
+;;(setq python-python-command "/opt/bin/python3")
+(setq elpy-rpc-python-command "/opt/bin/python3")
 ;; use ipython3
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-;;(setq python-shell-interpreter "/home/shared/Builds/Python-3.10.0/bin/ipython3"
+;;(setq python-shell-interpreter "/opt/bin/ipython3"
 ;;      python-shell-interpreter-args "-i")
 
 (setq python-shell-interpreter "ipython3"
