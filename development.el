@@ -18,6 +18,28 @@
 
 ;; )
 
+
+                                        ;============================ code folding ===========================
+
+;;TODO: helm-swoop/swiper
+
+;; (defun my-python-mode-hook ()
+
+;;   (hs-minor-mode)
+
+;;   ;; (local-set-key (kbd "C-t s") 'hs-show-all) ;; ctrl+shift+=
+;;   ;; (local-set-key (kbd "C-t h") 'hs-hide-all)   ;; ctrl+shift+-
+;;   ;; (local-set-key (kbd "C-t b") 'hs-hide-block)
+;;   ;; ;;(local-set-key (kbd "C-t ") 'hs-show-block)
+;;   )
+;; s
+  
+(key-chord-define-global "ft" 'hs-toggle-hiding)
+
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+                                        ;================================ end ================================
+
 (use-package banner-comment
   :straight t
   :init

@@ -4,7 +4,14 @@
 sudo aptitude install libsqlite3-dev libffi-dev
 - download python source and extract the files
 - configure and compile
+./configure --prefix=/opt --enable-optimizations --enable-shared
+make -j4
 - make install
+
+## install mlocate/locate (for globalff search)
+sudo apt install mlocate
+sudo systemctl start mlocate
+updatedb
 
 ## install cascadia-code font
 sudo aptitude install fonts-cascadia-code
@@ -99,11 +106,11 @@ git repo: anachronic/importmagic.el
 ## elpy
 
 ### refactoring
-C-c C-e 
-C-c C-r r (elpy-refactor-rename)¶
-C-c C-r v (elpy-refactor-extract-variable)¶
-C-c C-r f (elpy-refactor-extract-function)¶
-C-c C-r i (elpy-refactor-inline)¶
+C-c C-e   
+C-c C-r r (elpy-refactor-rename)¶  
+C-c C-r v (elpy-refactor-extract-variable)¶  
+C-c C-r f (elpy-refactor-extract-function)¶  
+C-c C-r i (elpy-refactor-inline)¶  
 
 ## company
 
@@ -125,6 +132,17 @@ humitos/buftra
 ## py-autopep8
 
 ## ace-link
+
+## code folding
+key-chord ft: hs-toggle-hiding
+;;   hs-hide-block                      C-c @ C-h  
+;;   hs-show-block                      C-c @ C-s  
+;;   hs-hide-all                        C-c @ C-M-h  
+;;   hs-show-all                        C-c @ C-M-s  
+;;   hs-hide-level                      C-c @ C-l  
+;;   hs-toggle-hiding                   C-c @ C-c  
+;;   hs-toggle-hiding                   [(shift mouse-2)]  
+;;   hs-hide-initial-comment-block  
 
 ## Features no incorporated due to performance or usability issues
 global-linum-mode 
