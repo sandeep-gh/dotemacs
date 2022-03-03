@@ -59,6 +59,10 @@ to make sure all configs are in place
 
 
 # Features
+## color-theme
+using color-theme-gnome2 from color-theme.el. Needs to be loaded manually M-x color-theme-gnome2.
+If using alternative theme, edit settings.el. For example, if using kaolin-galaxy, add the lines
+(load-theme 'kalion-galaxy t)
 ## globalff
 ## rainbow delimiters
 ## newline mode

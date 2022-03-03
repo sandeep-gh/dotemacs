@@ -43,16 +43,21 @@
 
 
 
-(load-theme 'kaolin-galaxy t)
+;;(load-theme 'kaolin-galaxy t)
 ;; Apply treemacs customization for Kaolin themes, requires the all-the-icons package.
-(kaolin-treemacs-theme)
+;;(kaolin-treemacs-theme)
 
 (setq zenburn-use-variable-pitch t)
 
 ;; ;; scale headings in org-mode
 (setq zenburn-scale-org-headlines t)
 
-(straight-use-package '(color-theme :local-repo "~/DesktopSetting/dotemacs/color-theme"))
+;;(straight-use-package '(color-theme :local-repo "~/DesktopSetting/dotemacs/color-theme")
+;;  :init
+;;  )
+(load-file "~/DesktopSetting/dotemacs/color-theme/color-theme.el")
+(require 'color-theme)
+;;(color-theme-gnome2) -- some bug-- breaks emacs initialization; manuall call color-theme-gnome2
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; end theme ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
