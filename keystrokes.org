@@ -1,27 +1,32 @@
 
-| key combo | action                     | type         |
-|-----------+----------------------------+--------------|
-| M-.       | jump to code               | code/ide     |
-| C-h w     |                            | help         |
-| yc        | avy-goto-char-2            | navigation   |
-| yl        | avy-goto-line              | navigation   |
-| yw        | avy-goto-word-1            | navigation   |
-| f1        | previous-multiframe-window | window/frame |
-| f2        | next-multiframe-window     | window/frame |
-| pw        | previous-multiframe-window | window/frame |
-| C-c d     | toggle-window-dedicated    | window/frame |
-| f3        | green-ansi-term            | window/frame |
-| f4        | green-eww                  | window/frame |
-| pb        | switch-to-previous-buffer  |              |
-| xp        | xah-copy-file-path         |              |
-| gf        | globalff                   | navigation   |
-| pf        | projectile-find-file       | code/ide     |
-| //        | isearch-forward            | navigation   |
-| vl        | visual-line-mode           |              |
-| qg        | google-this                | browsing     |
-| wn        | eww-new                    | browsing     |
-| wy        | eww-copy-page-url          | browsing     |
-|           |                            |              |
+| key combo   | action                         | type         | notes                                     |
+|-------------+--------------------------------+--------------+-------------------------------------------|
+| M-.         | jump to code                   | code/ide     |                                           |
+| C-h w       |                                | help         |                                           |
+| yc          | avy-goto-char-2                | navigation   |                                           |
+| yl          | avy-goto-line                  | navigation   |                                           |
+| yw          | avy-goto-word-1                | navigation   |                                           |
+| f1          | previous-multiframe-window     | window/frame |                                           |
+| f2          | next-multiframe-window         | window/frame |                                           |
+| pw          | previous-multiframe-window     | window/frame |                                           |
+| C-c d       | toggle-window-dedicated        | window/frame |                                           |
+| f3          | green-ansi-term                | window/frame |                                           |
+| f4          | green-eww                      | window/frame |                                           |
+| pb          | switch-to-previous-buffer      |              |                                           |
+| xp          | xah-copy-file-path             |              |                                           |
+| gf          | globalff                       | navigation   |                                           |
+| pf          | projectile-find-file           | code/ide     |                                           |
+| //          | isearch-forward                | navigation   |                                           |
+| vl          | visual-line-mode               |              |                                           |
+| qg          | google-this                    | browsing     |                                           |
+| wn          | eww-new                        | browsing     |                                           |
+| wy          | eww-copy-page-url              | browsing     |                                           |
+| C-x r SPC r | point-to-register              | navigation   |                                           |
+| C-x r j r   | jump-to-register               | navigation   |                                           |
+| C-x r s r   | copy-to-register               |              |                                           |
+| C-x r i r   | insert-register                |              |                                           |
+| C-s C-w     | search word after current mark | navigation   | repeated C-w expands words to be searched |
+|             |                                |              |                                           |
 
 
 * IDE

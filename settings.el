@@ -52,7 +52,7 @@
 ;; ;; scale headings in org-mode
 (setq zenburn-scale-org-headlines t)
 
-
+(straight-use-package '(color-theme :local-repo "~/DesktopSetting/dotemacs/color-theme"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; end theme ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -234,7 +234,7 @@
 (key-chord-define-global "yl" 'avy-goto-line)
 (key-chord-define-global "yw" 'avy-goto-word-1)
 ;; TBD org-mode binding
-(global-set-key [f1] 'previous-multiframe-window)
+(global-set-key [f1] 'previous-multiframe-window)  ;; not working as expected
 (global-set-key [f2] 'next-multiframe-window)
 
 (key-chord-define-global "pw" 'previous-multiframe-window)

@@ -36,7 +36,7 @@
   
 (key-chord-define-global "ft" 'hs-toggle-hiding)
 
-(add-hook 'python-mode-hook 'my-python-mode-hook)
+;;(add-hook 'python-mode-hook 'my-python-mode-hook)
 
                                         ;================================ end ================================
 

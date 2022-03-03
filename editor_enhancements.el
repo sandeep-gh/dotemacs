@@ -14,6 +14,40 @@
    (current-buffer)))
 (global-set-key (kbd "C-c d") 'toggle-window-dedicated)
 
+(defun goto-org-org()
+  "switch to org.org; for quick note taking"
+  (interactive)
+  (let ((existing-buffer (get-buffer "org.org")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'ido-find-file))))
+
+(global-set-key [f12] 'goto-org-org)
+
+(defun goto-developer-notes()
+  "switch to org.org; for quick note taking"
+  (interactive)
+  (let ((existing-buffer (get-buffer "developer_notes.org")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'ido-find-file))))
+
+(global-set-key [f11] 'goto-developer-notes)
+
+
+(defun goto-dotemacs()
+  "switch to org.org; for quick note taking"
+  (interactive)
+  (let ((existing-buffer (get-buffer "keystrokes.org")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'ido-find-file))))
+
+(global-set-key [f10] 'goto-dotemacs)
+
+
+
+
 (defun green-ansi-term ()
   "Show an existing buffer called \"*ansi-term*\" if one exists, otherwise
 call function ansi-term interactively."
@@ -125,3 +159,7 @@ Version 2017-09-01"
     (end-of-line)
     (set-mark pos)))
 ;; http://ergoemacs.org/emacs/elisp_basics.html
+
+
+
+
