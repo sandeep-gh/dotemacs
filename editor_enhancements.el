@@ -45,6 +45,16 @@
 
 (global-set-key [f10] 'goto-dotemacs)
 
+(defun goto-htmlcomponents()
+  "switch to org.org; for quick note taking"
+  (interactive)
+  (let ((existing-buffer (get-buffer "htmlcomponents.py")))
+    (if existing-buffer
+        (switch-to-buffer-other-frame existing-buffer)
+      (call-interactively 'ido-find-file))))
+
+(global-set-key [f9] 'goto-htmlcomponents)
+
 
 
 
