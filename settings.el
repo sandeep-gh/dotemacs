@@ -239,6 +239,25 @@
 (key-chord-define-global "yc" 'avy-goto-char-2)
 (key-chord-define-global "yl" 'avy-goto-line)
 (key-chord-define-global "yw" 'avy-goto-word-1)
+
+(defun insertspace ()
+  "Insert space"
+  (interactive)
+  (insert " ")) 
+   
+(key-chord-define-global ";;" 'insertspace)
+(key-chord-define-global "jj" 'save-buffer)
+(key-chord-define-global "uu" 'grep-find)
+(key-chord-define-global "mm" 'set-mark-command)
+(key-chord-define-global "yy" 'kill-ring-save)
+
+(key-chord-define-global "qq" 'backward-delete-char-untabify)
+(key-chord-define-global "gg" 'other-window)
+(key-chord-define-global ",," 'point-to-register)
+(key-chord-define-global ".." 'jump-to-register)
+(key-chord-define-global "cc" 'comment-or-uncomment-region)
+
+
 ;; TBD org-mode binding
 (global-set-key [f1] 'previous-multiframe-window)  ;; not working as expected
 (global-set-key [f2] 'next-multiframe-window)
