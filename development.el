@@ -20,26 +20,87 @@
 
 
                                         ;============================ code folding ===========================
-
-;;TODO: helm-swoop/swiper
-
-;; (defun my-python-mode-hook ()
-
-;;   (hs-minor-mode)
-
-;;   ;; (local-set-key (kbd "C-t s") 'hs-show-all) ;; ctrl+shift+=
-;;   ;; (local-set-key (kbd "C-t h") 'hs-hide-all)   ;; ctrl+shift+-
-;;   ;; (local-set-key (kbd "C-t b") 'hs-hide-block)
-;;   ;; ;;(local-set-key (kbd "C-t ") 'hs-show-block)
-;;   )
-;; s
+(use-package vimish-fold
+  :straight t
+  :init
+  )
+(key-chord-define-global "ft" 'vimish-fold)
+(defun my-python-mode-hook ()
+  (vimish-fold-mode)
+  (hs-minor-mode)
   
-(key-chord-define-global "ft" 'hs-toggle-hiding)
+  )
 
-;;(add-hook 'python-mode-hook 'my-python-mode-hook)
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+
+                                        ;also use selective display
+;https://www.reddit.com/r/emacs/comments/dfxe1u/codefolding_based_off_indent_level/ 
+;; (defun fold-level-2 ()
+;;     (interactive)
+;;     (set-selective-display (* 2 tab-width)))
+
+
+
+
+
+                                        ;https://github.com/celwell/.emacs.d/blob/3346eb9f2104c6fb1fb64008b18a533d7cb7c5f8/init.el#L312 via
+                                        ; https://www.reddit.com/r/emacs/comments/dfxe1u/comment/f36jmgf/?utm_source=share&utm_medium=web2x&context=3
+
+(defun set-selective-display-dlw (&optional level)
+"Fold text indented same of more than the cursor.
+If level is set, set the indent level to LEVEL.
+If 'selective-display' is already set to LEVEL, clicking
+F5 again will unset 'selective-display' by setting it to 0."
+  (interactive "P")
+  (if (eq selective-display (1+ (current-column)))
+      (set-selective-display 0)
+    (set-selective-display (or level (1+ (current-column))))))
+
+(key-chord-define-global "qp" 'set-selective-display-dlw)
+
+
+;;https://rodogi.github.io/post/python-fold/
+;; Fold code-blocks in python
+(defun fold-python-blocks ()
+  "Fold all code blocks in python"
+  (interactive)
+  (forward-word) ; start with the second word
+  (setq p (point))
+  (while (forward-word)
+    (backward-word)
+    (setq col (current-column))
+    (forward-word)
+    (if (= col 0)
+	(progn
+	  (setq p1 (car (bounds-of-thing-at-point 'word)))
+	  (vimish-fold p p1)
+	  (setq p p1)
+	  (goto-char p)
+	  (forward-word))))
+  (vimish-fold p (buffer-size))
+  (goto-char 1))
+
+
+;; (defun sg-toggle-fold ()
+  
+;;   "Toggle code folding according to indentation of current line."
+  
+;;   (interactive)
+  
+;;   (set-selective-display
+   
+;;    (if selective-display
+       
+;;        nil
+     
+;;      (save-excursion
+       
+;;        (back-to-indentation)
+       
+;;        (1+ (current-column))))))
 
                                         ;================================ end ================================
-
 (use-package banner-comment
   :straight t
   :init
@@ -78,6 +139,12 @@
 ;; (global-origami-mode t)
 ;; (key-chord-define-global "ft" 'origami-recursively-toggle-node)
 ;; (key-chord-define-global "fn" 'origami-show-only-node)
+
+;; (defun unfold-everything ()
+;;     (interactive)
+;;     (origami-open-all-nodes (current-buffer))
+;;     (set-selective-display nil))
+
 
 
 

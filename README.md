@@ -138,6 +138,19 @@ humitos/buftra
 ## ace-link
 
 ## code folding
+using vimish-fold
+vimish-fold-unfold
+vimish-fold-unfold-all
+vimish-fold-refold
+vimish-fold-refold-all
+vimish-fold-delete-all
+vimish-fold-toggle
+vimish-fold-toggle-all
+vimish-fold-avy (requires avy package)
+vimish-fold-from-marks
+vimish-fold-mode
+
+
 key-chord ft: hs-toggle-hiding
 ;;   hs-hide-block                      C-c @ C-h  
 ;;   hs-show-block                      C-c @ C-s  
