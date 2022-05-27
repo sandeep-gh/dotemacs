@@ -268,3 +268,16 @@
   :straight t
   :init)
 
+
+;;dtache run commands outside of emacs
+;; unable to install via straight
+(use-package dtache
+  :hook (after-init . dtache-setup)
+  :bind (([remap async-shell-command] . dtache-shell-command)))
+
+(use-package dtache-shell
+  :straight
+  :after dtache
+  :config
+  (dtache-shell-setup)
+  (setq dtache-shell-history-file "~/.bash_history"))

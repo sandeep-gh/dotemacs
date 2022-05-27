@@ -20,19 +20,26 @@
 
 
                                         ;============================ code folding ===========================
-(use-package vimish-fold
-  :straight t
-  :init
-  )
-(key-chord-define-global "ft" 'vimish-fold)
+;; not working as expected
+;; (use-package vimish-fold
+;;   :straight t
+;;   :init
+;;   )
+;;(key-chord-define-global "ft" 'vimish-fold)
 (defun my-python-mode-hook ()
-  (vimish-fold-mode)
+ ;;  (vimish-fold-mode)
   (hs-minor-mode)
   
   )
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
+(key-chord-define-global "hb" 'hs-hide-block)
+(key-chord-define-global "ha" 'hs-hide-all)
+(key-chord-define-global "hl" 'hs-hide-level)
 
+(key-chord-define-global "sb" 'hs-show-block)
+(key-chord-define-global "sa" 'hs-show-all)
+(key-chord-define-global "sl" 'hs-show-level)
 
                                         ;also use selective display
 ;https://www.reddit.com/r/emacs/comments/dfxe1u/codefolding_based_off_indent_level/ 
@@ -80,6 +87,8 @@ F5 again will unset 'selective-display' by setting it to 0."
 	  (forward-word))))
   (vimish-fold p (buffer-size))
   (goto-char 1))
+
+
 
 
 ;; (defun sg-toggle-fold ()
@@ -310,11 +319,11 @@ F5 again will unset 'selective-display' by setting it to 0."
   )
 
 
-(use-package py-autopep8
-  :straight t
-  :init
-  )
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;(use-package py-autopep8
+;  :straight t
+;  :init
+;  )
+;(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 
 (use-package pyvenv
@@ -423,9 +432,9 @@ F5 again will unset 'selective-display' by setting it to 0."
 
 
 ;;(setq python-python-command "/opt/bin/python3")
-(setq elpy-rpc-python-command "/opt/bin/python3")
+;;(setq elpy-rpc-python-command "/opt/bin/python3")
 ;; use ipython3
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+;;(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 ;;(setq python-shell-interpreter "/opt/bin/ipython3"
 ;;      python-shell-interpreter-args "-i")
 

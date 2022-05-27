@@ -15,6 +15,13 @@ updatedb
 
 ## install cascadia-code font
 sudo aptitude install fonts-cascadia-code
+or 
+doas pkg_add cascadia-code
+
+## install dtach
+on OpenBSD
+cd /usr/ports/misc/dtach
+make and doas make install
 
 ## Clone dotemacs in ~/DesktopSetting folder
 ```
@@ -160,6 +167,10 @@ key-chord ft: hs-toggle-hiding
 ;;   hs-toggle-hiding                   C-c @ C-c  
 ;;   hs-toggle-hiding                   [(shift mouse-2)]  
 ;;   hs-hide-initial-comment-block  
+
+## dtache
+dtache-shell-command
+
 
 ## Features no incorporated due to performance or usability issues
 global-linum-mode 
