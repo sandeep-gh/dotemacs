@@ -6,6 +6,8 @@
 
 (load "~/DesktopSetting/dotemacs/development.el")
 (load "~/DesktopSetting/dotemacs/webdevelopment.el")
+
 (load "~/DesktopSetting/dotemacs/path.el")
 (load "~/DesktopSetting/dotemacs/browsing.el")
-;(load "~/DesktopSetting/dotemacs/navigation.el")
+(load "~/DesktopSetting/dotemacs/orglatex.el")
+ ;(load "~/DesktopSetting/dotemacs/navigation.el")

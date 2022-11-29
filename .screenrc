@@ -1,0 +1,47 @@
+# GNU Screen - main configuration file 
+# All other .screenrc files will source this file to inherit settings.
+# Author: Christian Wills - cwills.sys@gmail.com
+ 
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+attrcolor i "+b"
+ 
+# Tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+# For Mac
+termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+
+term $TERM # depend on $TERM
+term xterm # or specified term
+term xterm-256color
+ 
+# Enables use of shift-PgUp and shift-PgDn
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
+ 
+# Erase background with current bg color
+defbce "on"
+ 
+# Cache 30000 lines for scroll back
+defscrollback 30000
+ 
+hardstatus alwayslastline 
+# Very nice tabbed colored hardstatus line
+# hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+#
+# dark style
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# light style
+#hardstatus string '%{= wB} %{g}[ %{y}%H %{g}][%= %{= wk}%?%-Lw%?%{m}(%{k}%n*%f%t%?(%u)%?%{m})%{k}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{M}%c %{g}]'
+
+ 
+# change command character from ctrl-a to ctrl-b (emacs users may want this)
+#escape ^Bb
+ 
+# Hide hardstatus: ctrl-a f 
+bind f eval "hardstatus ignore"
+# Show hardstatus: ctrl-a F
+bind F eval "hardstatus alwayslastline"
+
+# turn of bell sound
+vbell off

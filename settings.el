@@ -157,14 +157,15 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; M-x enhancements ;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;============= turning it off due to very heavy cpu usage ============
 ;; https://github.com/nonsequitur/smex
-(straight-use-package '(smex  :type git  :host github  :repo "nonsequitur/smex"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; (straight-use-package '(smex  :type git  :host github  :repo "nonsequitur/smex"))
+;; (smex-initialize)
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; ;; This is your old M-x.
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;=====================================================================
 
 ;;lnmd' matches 'line-number-mode'. C-s/C-r switches to the next/previous match. Enter executes the selected command.
 ;; C-h f, while Smex is active, runs describe-function on the currently selected command.
@@ -219,6 +220,30 @@
 
 
 ;; something about eww not able to access port 433
+
+;;; tabs again
+;;(straight-use-package '(awesome-tab  :type git  :host github  :repo "manateelazycat/awesome-tab"))
+
+(use-package key-chord
+  :straight t
+  :init
+  )
+(key-chord-mode t)
+
+
+(use-package awesome-tab
+    :straight (:host github :repo "manateelazycat/awesome-tab")
+    )
+(require 'awesome-tab)
+(awesome-tab-mode t)
+
+(key-chord-define-global "ab" 'awesome-tab-backward-tab)
+(key-chord-define-global "af" 'awesome-tab-forward-tab)
+
+(key-chord-define-global "a;" 'awesome-tab-backward-group)
+(key-chord-define-global "a." 'awesome-tab-forward-group)
+
+
 (use-package gnutls
   :straight t
   :init)
@@ -229,11 +254,6 @@
 (setq url-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
 
 
-(use-package key-chord
-  :straight t
-  :init
-  )
-(key-chord-mode t)
 
 
 (key-chord-define-global "yc" 'avy-goto-char-2)
@@ -271,13 +291,14 @@
 
 ;;dtache run commands outside of emacs
 ;; unable to install via straight
-(use-package dtache
-  :hook (after-init . dtache-setup)
-  :bind (([remap async-shell-command] . dtache-shell-command)))
+;; openbsd doesn't seem to have dtache
+;; (use-package dtache
+;;   :hook (after-init . dtache-setup)
+;;   :bind (([remap async-shell-command] . dtache-shell-command)))
 
-(use-package dtache-shell
-  :straight
-  :after dtache
-  :config
-  (dtache-shell-setup)
-  (setq dtache-shell-history-file "~/.bash_history"))
+;; (use-package dtache-shell
+;;   :straight
+;;   :after dtache
+;;   :config
+;;   (dtache-shell-setup)
+;;   (setq dtache-shell-history-file "~/.bash_history"))

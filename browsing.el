@@ -51,82 +51,86 @@
 
 ;; (require 'org-compat)
 (add-to-list 'load-path "~/eww_emacs.d/custom")
-(use-package ol
-  )
+;; not required: org-eww-copy-for-org-mode is already in standard package
 
-(require 'ol)
+;; (use-package ol
+;;   )
+
+;; (require 'ol)
 
 
-(use-package ol-eww
-  )
+;; (use-package ol-eww
+;;   )
 
-(require 'ol-eww)
+;;(require 'ol-eww)
+;;;-------------------------------
 (key-chord-define-global "eo" 'org-eww-copy-for-org-mode)
+;; Turn of images in eww 
+;; (defvar-local endless/display-images t)
 
-(defvar-local endless/display-images t)
+;; (defun endless/toggle-image-display ()
+;;   "Toggle images display on current buffer."
+;;   (interactive)
+;;   (setq endless/display-images
+;;         (null endless/display-images))
+;;   (endless/backup-display-property endless/display-images))
 
-(defun endless/toggle-image-display ()
-  "Toggle images display on current buffer."
-  (interactive)
-  (setq endless/display-images
-        (null endless/display-images))
-  (endless/backup-display-property endless/display-images))
+;; (defun endless/backup-display-property (invert &optional object)
+;;   "Move the 'display property at POS to 'display-backup.
+;; Only applies if display property is an image.
+;; If INVERT is non-nil, move from 'display-backup to 'display
+;; instead.
+;; Optional OBJECT specifies the string or buffer. Nil means current
+;; buffer."
+;;   (let* ((inhibit-read-only t)
+;;          (from (if invert 'display-backup 'display))
+;;          (to (if invert 'display 'display-backup))
+;;          (pos (point-min))
+;;          left prop)
+;;     (while (and pos (/= pos (point-max)))
+;;       (if (get-text-property pos from object)
+;;           (setq left pos)
+;;         (setq left (next-single-property-change pos from object)))
+;;       (if (or (null left) (= left (point-max)))
+;;           (setq pos nil)
+;;         (setq prop (get-text-property left from object))
+;;         (setq pos (or (next-single-property-change left from object)
+;;                       (point-max)))
+;;         (when (eq (car prop) 'image)
+;;           (add-text-properties left pos (list from nil to prop) object))))))
 
-(defun endless/backup-display-property (invert &optional object)
-  "Move the 'display property at POS to 'display-backup.
-Only applies if display property is an image.
-If INVERT is non-nil, move from 'display-backup to 'display
-instead.
-Optional OBJECT specifies the string or buffer. Nil means current
-buffer."
-  (let* ((inhibit-read-only t)
-         (from (if invert 'display-backup 'display))
-         (to (if invert 'display 'display-backup))
-         (pos (point-min))
-         left prop)
-    (while (and pos (/= pos (point-max)))
-      (if (get-text-property pos from object)
-          (setq left pos)
-        (setq left (next-single-property-change pos from object)))
-      (if (or (null left) (= left (point-max)))
-          (setq pos nil)
-        (setq prop (get-text-property left from object))
-        (setq pos (or (next-single-property-change left from object)
-                      (point-max)))
-        (when (eq (car prop) 'image)
-          (add-text-properties left pos (list from nil to prop) object))))))
-
+;; we don't publish from org anymore
 ;;https://emacs.stackexchange.com/questions/5889/how-to-highlight-text-permanently-in-org-mode
-(setq org-emphasis-alist
-  '(("*" (bold :foreground "Orange" ))
-    ("/" italic)
-    ("_" underline)
-    ("=" (:background "maroon" :foreground "white"))
-    ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
-    ("+" (:strike-through t))))
+;; (setq org-emphasis-alist
+;;   '(("*" (bold :foreground "Orange" ))
+;;     ("/" italic)
+;;     ("_" underline)
+;;     ("=" (:background "maroon" :foreground "white"))
+;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
+;;     ("+" (:strike-through t))))
 
-(require 'ox-publish)
-(setq org-publish-project-alist
-      '(
-        ("org-notes"
-         :base-directory "/home/kabira/Development/WebpageReadablePipeline/org/"
-         :base-extension "org"
-         :publishing-directory "/home/kabira/Development/WebpageReadablePipeline/public_html/"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headline-levels 4             ; Just the default for this project.
-         :auto-preamble t
-         )
-       ;; ... add all the components here (see below)...
-        ("org-static"
-         :base-directory "~/org/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-         :publishing-directory "/home/kabira/Development/WebpageReadablePipeline/public_html/"
-         :recursive t
-         :publishing-function org-publish-attachment
-         )
-        ("org" :components ("org-notes" "org-static"))
-        ))
+;; (require 'ox-publish)
+;; (setq org-publish-project-alist
+;;       '(
+;;         ("org-notes"
+;;          :base-directory "/home/kabira/Development/WebpageReadablePipeline/org/"
+;;          :base-extension "org"
+;;          :publishing-directory "/home/kabira/Development/WebpageReadablePipeline/public_html/"
+;;          :recursive t
+;;          :publishing-function org-html-publish-to-html
+;;          :headline-levels 4             ; Just the default for this project.
+;;          :auto-preamble t
+;;          )
+;;        ;; ... add all the components here (see below)...
+;;         ("org-static"
+;;          :base-directory "~/org/"
+;;          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+;;          :publishing-directory "/home/kabira/Development/WebpageReadablePipeline/public_html/"
+;;          :recursive t
+;;          :publishing-function org-publish-attachment
+;;          )
+;;         ("org" :components ("org-notes" "org-static"))
+;;         ))
 
 
 

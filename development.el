@@ -131,14 +131,14 @@ F5 again will unset 'selective-display' by setting it to 0."
   :straight t
   :init 
   )
-
-(use-package importmagic
-  :straight   (:host github :repo "anachronic/importmagic.el")
-  :init
-  :config
-  (add-hook 'python-mode-hook 'importmagic-mode)
-  )
-(add-hook 'python-mode-hook 'importmagic-mode)
+;; turn off; its using CPU crazily. 
+;; (use-package importmagic
+;;   :straight   (:host github :repo "anachronic/importmagic.el")
+;;   :init
+;;   :config
+;;   (add-hook 'python-mode-hook 'importmagic-mode)
+;;   )
+;; (add-hook 'python-mode-hook 'importmagic-mode)
 
 ;======================== garbles up the code ========================
 ;; (use-package origami
@@ -164,21 +164,21 @@ F5 again will unset 'selective-display' by setting it to 0."
 ;;https://www.zhstar.win/2018/12/03/emacs-cpp-ide/
 ;; https://mostlymaths.net/2019/05/gtags-gnu-global-in-emacs-for-scala.html/
 ;; https://sriramkswamy.github.io/dotemacs/
+;; Can't get it to work; global not working correctly
+;; (add-hook 'python-mode-hook 'gtags-mode)
 
-(add-hook 'python-mode-hook 'gtags-mode)
-
-(dolist (map (list ggtags-mode-map))
-  (define-key map (kbd "C-c g s") 'ggtags-find-other-symbol)
-  (define-key map (kbd "C-c g h") 'ggtags-view-tag-history)
-  (define-key map (kbd "C-c g r") 'ggtags-find-reference)
-  (define-key map (kbd "C-c g f") 'ggtags-find-file)
-  (define-key map (kbd "C-c g c") 'ggtags-create-tags)
-  (define-key map (kbd "C-c g u") 'ggtags-update-tags)
- ;; (define-key map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-  (define-key map (kbd "M-.") 'ggtags-find-tag-dwim)
-  (define-key map (kbd "M-,") 'pop-tag-mark)
-  (define-key map (kbd "C-c <") 'ggtags-prev-mark)
-  (define-key map (kbd "C-c >") 'ggtags-next-mark))
+;; (dolist (map (list ggtags-mode-map))
+;;   (define-key map (kbd "C-c g s") 'ggtags-find-other-symbol)
+;;   (define-key map (kbd "C-c g h") 'ggtags-view-tag-history)
+;;   (define-key map (kbd "C-c g r") 'ggtags-find-reference)
+;;   (define-key map (kbd "C-c g f") 'ggtags-find-file)
+;;   (define-key map (kbd "C-c g c") 'ggtags-create-tags)
+;;   (define-key map (kbd "C-c g u") 'ggtags-update-tags)
+;;  ;; (define-key map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+;;   (define-key map (kbd "M-.") 'ggtags-find-tag-dwim)
+;;   (define-key map (kbd "M-,") 'pop-tag-mark)
+;;   (define-key map (kbd "C-c <") 'ggtags-prev-mark)
+;;   (define-key map (kbd "C-c >") 'ggtags-next-mark))
 
 
 (use-package projectile
@@ -194,10 +194,15 @@ F5 again will unset 'selective-display' by setting it to 0."
   )
 ;; https://docs.projectile.mx/projectile/configuration.html
 (projectile-global-mode)
+(setq projectile-known-projects-file "~/.projectile.projects")
+(setq projectile-globally-ignored-file-suffixes '("pyc" "~"))
 (setq projectile-enable-caching t)
 (setq projectile-sort-order 'recently-active)
 (setq projectile-completion-system 'ido)
-(key-chord-define-global "pf" 'projectile-find-file)
+(key-chord-define-global "pf" 'projectile-find-file-in-known-projects)
+
+
+
 
 
 ;;TBD
@@ -285,6 +290,8 @@ F5 again will unset 'selective-display' by setting it to 0."
   :straight t
   :init
   )
+;================== turning it off due to heavy cpu ==================
+;========= turning it back on because I really really need it ========
 (use-package flycheck
   :straight t
   :init
@@ -295,28 +302,32 @@ F5 again will unset 'selective-display' by setting it to 0."
   (global-set-key (kbd "C-c p") 'flycheck-prev-error)
   )
 (add-hook 'after-init-hook 'global-flycheck-mode)
-;;(setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
 
+;================================ done ===============================
+;(setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
+
+;; org-export-latex doesn't like it. 
 ;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
 ;; https://stackoverflow.com/questions/42486695/python-type-hinting-in-emacs/62543783#62543783
 ;; flycheck-pycheckers
 ;; Allows multiple syntax checkers to run in parallel on Python code
 ;; Ideal use-case: pyflakes for syntax combined with mypy for typing
-(use-package flycheck-pycheckers
-  :straight t
-  :after flycheck
-  :init
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
-    )
-  (setq flycheck-pycheckers-checkers
-    '(
-      mypy3
-      pyflakes
-      )
-    )
-  )
+ ;; CPU usage too high 
+;; (use-package flycheck-pycheckers
+;;   :straight t
+;;   :after flycheck
+;;   :init
+;;   (with-eval-after-load 'flycheck
+;;     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
+;;     )
+;;   (setq flycheck-pycheckers-checkers
+;;     '(
+;;       mypy3
+;;       pyflakes
+;;       )
+;;     )
+;;   )
 
 
 ;(use-package py-autopep8
@@ -331,104 +342,110 @@ F5 again will unset 'selective-display' by setting it to 0."
   :init
   )
 
-(use-package elpy
-    :straight t
-    :bind
-    (:map elpy-mode-map
-          ("C-M-n" . elpy-nav-forward-block)
-          ("C-M-p" . elpy-nav-backward-block))
-    :hook ((elpy-mode . flycheck-mode)
-           (elpy-mode . (lambda ()
-                          (set (make-local-variable 'company-backends)
-                               '((elpy-company-backend :with company-yasnippet))))))
-    :init
-    (elpy-enable)
-    :config
-    ;;(add-hook 'elpy-mode-hook 'poetry-tracking-mode) ;; optional if you're using Poetry
-    (setq elpy-syntax-check-command "pyflakes") ;; or replace with the path to your pyflakes binary
-    ;; use flycheck instead of flymake
-    (when (load "flycheck" t t)
-      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode))
-    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    ; fix for MacOS, see https://github.com/jorgenschaefer/elpy/issues/1550
-    (setq elpy-shell-echo-output nil)
-    (setq elpy-rpc-python-command "python3")
-    (setq elpy-rpc-timeout 2))
 
 
-(use-package company
-  :straight t
-  :diminish company-mode
-  :init
-  (global-company-mode)
-  :config
-  ;; set default `company-backends'
-  (setq company-backends
-        '((company-files          ; files & directory
-           company-keywords       ; keywords
-           company-capf)  ; completion-at-point-functions
-          (company-abbrev company-dabbrev)
-          ))
-(use-package company-statistics
-    :straight t
-    :init
-    (company-statistics-mode))
-(use-package company-web
-    :straight t)
-(use-package company-try-hard
-    :straight t
-    :bind
-    (("C-<tab>" . company-try-hard)
-     :map company-active-map
-     ("C-<tab>" . company-try-hard)))
-(use-package company-quickhelp
-    :straight t
-    :config
-    (company-quickhelp-mode))
-)
-
-
-
-(use-package buftra
-    :straight (:host github :repo "humitos/buftra.el"))
-(use-package py-pyment
-    :straight (:host github :repo "humitos/py-cmd-buffer.el")
-    :config
-    (setq py-pyment-options '("--output=numpydoc")))
-;; (use-package py-isort
-;;     :straight (:host github :repo "humitos/py-cmd-buffer.el")
-;;     :hook (python-mode . py-isort-enable-on-save)
+;; (use-package elpy
+;;     :straight t
+;;     :bind
+;;     (:map elpy-mode-map
+;;           ("C-M-n" . elpy-nav-forward-block)
+;;           ("C-M-p" . elpy-nav-backward-block))
+;;      ;; CPU usage too high
+;;     ;; :hook (
+;;     ;;        (elpy-mode . flycheck-mode)
+;;     ;;        (elpy-mode . (lambda ()
+;;     ;;                       (set (make-local-variable 'company-backends)
+;;     ;;                            '((elpy-company-backend :with company-yasnippet))))))
+;;     :init
+;;     (elpy-enable)
 ;;     :config
-;;     (setq py-isort-options '("--lines=88" "-m=3" "-tc" "-fgw=0" "-ca")))
-(use-package py-autoflake
-    :straight (:host github :repo "humitos/py-cmd-buffer.el")
-    :hook (python-mode . py-autoflake-enable-on-save)
-    :config
-    (setq py-autoflake-options '("--expand-star-imports")))
-(use-package py-docformatter
-    :straight (:host github :repo "humitos/py-cmd-buffer.el")
-    :hook (python-mode . py-docformatter-enable-on-save)
-    :config
-    (setq py-docformatter-options '("--wrap-summaries=88" "--pre-summary-newline")))
-(use-package blacken
-    :straight t
-    :hook (python-mode . blacken-mode)
-    :config
-    (setq blacken-line-length '88))
-(use-package python-docstring
-    :straight t
-    :hook (python-mode . python-docstring-mode))
+;;     ;;(add-hook 'elpy-mode-hook 'poetry-tracking-mode) ;; optional if you're using Poetry
+;;     ;; (setq elpy-syntax-check-command "pyflakes") ;; or replace with the path to your pyflakes binary
+;;     ;; ;; use flycheck instead of flymake
+;;     ;; (when (load "flycheck" t t)
+;;     ;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;     ;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
+;;     ;; (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;     ;; ; fix for MacOS, see https://github.com/jorgenschaefer/elpy/issues/1550
+;;     ;; (setq elpy-shell-echo-output nil)
+;;     ;; (setq elpy-rpc-python-command "python3.11")
+;;     ;; (setq elpy-rpc-timeout 2)
+;;     )
 
-(defun company-jedi-setup ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'company-jedi-setup)
 
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(key-chord-define-global "jd" 'jedi:goto-definition)
-(setq elpy-rpc-backend "jedi") ;;elpy-jedi integration not working
+;; (use-package company
+;;   :straight t
+;;   :diminish company-mode
+;;   :init
+;;   (global-company-mode)
+;;   :config
+;;   ;; set default `company-backends'
+;;   (setq company-backends
+;;         '((company-files          ; files & directory
+;;            company-keywords       ; keywords
+;;            company-capf)  ; completion-at-point-functions
+;;           (company-abbrev company-dabbrev)
+;;           ))
+;; (use-package company-statistics
+;;     :straight t
+;;     :init
+;;     (company-statistics-mode))
+;; (use-package company-web
+;;     :straight t)
+;; (use-package company-try-hard
+;;     :straight t
+;;     :bind
+;;     (("C-<tab>" . company-try-hard)
+;;      :map company-active-map
+;;      ("C-<tab>" . company-try-hard)))
+;; (use-package company-quickhelp
+;;     :straight t
+;;     :config
+;;     (company-quickhelp-mode))
+;; )
+
+
+ ;; CPU USAGE TOO HIGH
+;; (use-package buftra
+;;     :straight (:host github :repo "humitos/buftra.el"))
+;; (use-package py-pyment
+;;     :straight (:host github :repo "humitos/py-cmd-buffer.el")
+;;     :config
+;;     (setq py-pyment-options '("--output=numpydoc")))
+;; ;; (use-package py-isort
+;; ;;     :straight (:host github :repo "humitos/py-cmd-buffer.el")
+;; ;;     :hook (python-mode . py-isort-enable-on-save)
+;; ;;     :config
+;; ;;     (setq py-isort-options '("--lines=88" "-m=3" "-tc" "-fgw=0" "-ca")))
+;; (use-package py-autoflake
+;;     :straight (:host github :repo "humitos/py-cmd-buffer.el")
+;;     :hook (python-mode . py-autoflake-enable-on-save)
+;;     :config
+;;     (setq py-autoflake-options '("--expand-star-imports")))
+;; (use-package py-docformatter
+;;     :straight (:host github :repo "humitos/py-cmd-buffer.el")
+;;     :hook (python-mode . py-docformatter-enable-on-save)
+;;     :config
+;;     (setq py-docformatter-options '("--wrap-summaries=88" "--pre-summary-newline")))
+;; (use-package blacken
+;;     :straight t
+;;     :hook (python-mode . blacken-mode)
+;;     :config
+;;     (setq blacken-line-length '88))
+;; (use-package python-docstring
+;;     :straight t
+;;     :hook (python-mode . python-docstring-mode))
+
+ ;; CPU USAGE TOO HIGH
+;; (defun company-jedi-setup ()
+;;   (add-to-list 'company-backends 'company-jedi))
+;; (add-hook 'python-mode-hook 'company-jedi-setup)
+
+;; (setq jedi:setup-keys t)
+;; (setq jedi:complete-on-dot t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (key-chord-define-global "jd" 'jedi:goto-definition)
+;; (setq elpy-rpc-backend "jedi") ;;elpy-jedi integration not working
 
 
 ;;(setq python-python-command "/opt/bin/python3")
